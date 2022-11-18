@@ -1,0 +1,166 @@
+#settingsMenu {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  user-select: none;
+}
+
+.text-setting {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 1.8em;
+  outline: none;
+  height: 26px;
+  margin-right: 50px;
+}
+
+.text-setting:disabled {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#settingsButton {
+  color: white;
+  position: fixed;
+  font-size: 24px;
+  background: none;
+  border: none;
+  top: 10px;
+  right: 10px;
+}
+
+#accidentals {
+  outline: none;
+  border-radius: 0;
+  border: none;
+  margin-right: 50px;
+}
+
+#main {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fa.fa-play, .fa.fa-pause {
+  position: relative;
+  color: white;
+  font-size: 5vw;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+}
+
+.fa.fa-play:hover, .fa.fa-pause:hover {
+  color: rgb(220, 220, 220);
+}
+
+#notes {
+  font-family: 'DM Serif Display', serif;
+  color: white;
+  font-size: 10vw;
+  width: 100vw;
+}
+
+#render {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  height: auto;
+}
+
+#dist-button {
+  background-color: hsl(0, 0%, 92%);
+  border: none;
+  border-radius: 5px;
+}
+
+#dist-button:hover {
+  background-color: hsl(0, 0%, 85%);
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.3));
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#dist {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+
+.dist-box {
+  display: inline-block;
+}
+
+.dist-setting {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3vw;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 5vw;
+  height: 1vw;
+  top: 0%;
+  outline: none;
+  height: 3vw;
+}
+
+.dist-label {
+  text-align: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1vw;
+}
+
+#instructions {
+  font-size: 5vw;
+  font-family: 'DM Serif Display', serif;
+  color: white;
+  text-align: center;
+  margin: 0;
+  user-select: none;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Melody Generator</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  <body>
+    <div id="settingsMenu" style="display:none">
+      No. of notes:
+      <input type="text" value="4" class="text-setting" min="0" max="8" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" id="no">
+      Cycle duration <i>(seconds)</i>:
+      <input type="text" value="0" class="text-setting" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" id="cycle">
+      Accidentals:
+      <select id="accidentals" name="accidentals">
+        <option value="flats">&#x266d;</option>
+        <option value="sharps">&#x266f;</option>
+        <!-- <option value="both">&#x266f;/&#x266d;</option> -->
+      </select>
+      <button type="button" id="dist-button">Distribution</button>
+    </div>
+    <button type="button" id="settingsButton" onclick="toggleSettings()"><i class="fa fa-gear"></i></button>
+    <div id="main">
+      <div id="notes">
+        <object id="render">
+          <svg viewBox="0 0 1210 300" id="svg-cont" onclick="generate()">
+            <!-- Staff Lines -->
+            <line class="staff" x1="0" y1="72" x2="100%" y2="72" style="stroke:rgb(255,255,255);stroke-width:4" />
+            <line class="staff" x1="0" y1="108" x2="100%" y2="108" style="stroke:rgb(255,255,255);stroke-width:4" />
+            <line class="staff" x1="0" y1="144" x2="100%" y2="144" style="stroke:rgb(255,255,255);stroke-width:4" />
+            <line class="staff" x1="0" y1="180" x2="100%" y2="180" style="stroke:rgb(255,255,255);stroke-width:4" />
+            <line class="staff" x1="0" y1="216" x2="100%" y2="216" style="stroke:rgb(255,255,255);stroke-width:4" />
+            <!-- Barlines -->
+            <line class="staff" x1="8" y1="72" x2="8" y2="216" style="stroke:rgb(255,255,255);stroke-width:16" />
+            <line class="staff" x1="32" y1="72" x2="32" y2="216" style="stroke:rgb(255,255,255);stroke-width:6" />
+            <line class="staff" x1="1202" y1="72" x2="1202" y2="216" style="stroke:rgb(255,255,255);stroke-width:16" />
+            <line class="staff" x1="1178" y1="72" x2="1178" y2="216" style="stroke:rgb(255,255,255);stroke-width:6" />
+            <!-- Treble Clef -->
+            <path class="staff" fill="white" d="M 301 -532 L 321 -416 C 323 -402 323 -402 344 -402 C 462 -402 537 -311 537 -209 C 537 -118 483 -50 402 -18 C 391 -14 390 -14 392 -5 C 401 45 415 121 415 166 C 415 302 311 326 258 326 C 137 326 106 248 106 196 C 106 146 138 104 191 104 C 240 104 268 142 268 186 C 268 232 239 254 214 261 C 196 266 189 269 189 274 C 189 285 210 298 253 298 C 300 298 380 283 380 165 C 380 127 368 58 358 4 C 357 -6 355 -5 346 -3 C 330 0 310 2 291 2 C 95 2 0 -130 0 -270 C 0 -431 123 -546 238 -641 C 247 -649 246 -650 245 -660 C 239 -693 234 -745 234 -791 C 234 -874 253 -974 312 -1040 C 328 -1058 353 -1078 364 -1078 C 373 -1078 394 -1056 406 -1038 C 438 -990 458 -922 458 -852 C 458 -724 392 -633 306 -547 C 301 -542 299 -542 301 -532 Z M 376 -954 C 327 -954 270 -878 270 -753 C 270 -727 271 -700 274 -679 C 276 -669 279 -668 285 -673 C 348 -729 424 -799 424 -889 C 424 -933 402 -954 376 -954 Z M 289 -410 L 272 -512 C 270 -521 269 -522 261 -515 C 163 -438 64 -351 64 -216 C 64 -105 154 -27 294 -27 C 310 -27 326 -29 339 -31 C 351 -34 352 -34 350 -42 L 310 -281 C 309 -290 307 -290 294 -287 C 246 -274 214 -239 214 -194 C 214 -157 238 -122 272 -108 C 278 -106 284 -103 284 -98 S 281 -89 274 -89 C 269 -89 259 -91 253 -94 C 198 -112 161 -163 161 -235 C 161 -303 206 -366 277 -390 C 291 -395 291 -394 289 -410 Z M 344 -282 L 383 -54 C 385 -45 386 -45 396 -50 C 441 -72 471 -113 471 -163 C 471 -234 418 -288 353 -294 C 343 -294 342 -292 344 -282 Z" style="transform: translate(50px, 216px) scale(0.18);"/>
+        </object>
+      </div>
+      <!-- <i class="fa fa-play" onclick="play()"></i> -->
+      <p id="instructions">Click the staff to create a melody!</p>
+    </div>
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="dist">
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">C</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">C&#x266f;/D&#x266d;</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">D</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">D&#x266f;/E&#x266d;</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">E</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">F</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">F&#x266f;/G&#x266d;</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">G</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">G&#x266f;/A&#x266d;</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">A</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">A&#x266f;/B&#x266d;</div>
+          </div>
+          <div class="dist-box">
+            <input maxlength="3" type="text" class="dist-setting" value="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+            <div class="dist-label">B</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
