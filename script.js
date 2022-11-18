@@ -70,6 +70,9 @@ function makeMelody(n) {
   var distSum = 0;
   var distArray = [];
   for (i=0; i<12; i++) {
+    if (isNaN(parseInt(distSettings[i].value))) {
+      distSettings[i].value = "0";
+    };
     var distVal = parseInt(distSettings[i].value);
     distSum += distVal;
     distArray.push(... Array(distVal).fill(i))
@@ -197,6 +200,8 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
+  distSettings[0].focus();
+  distSettings[0].setSelectionRange(distSettings[0].value.length, distSettings[0].value.length);
 }
 
 // When the user clicks on <span> (x), close the modal
